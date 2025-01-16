@@ -1,0 +1,58 @@
+﻿<Window x:Class="ShoeRepair.View.Windows.AddMasterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShoeRepair.View.Windows"
+        mc:Ignorable="d"
+        Title="Добавить нового мастера" Height="640" Width="500"
+        WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" >
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/> 
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/> 
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/> 
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Новый мастер" FontSize="30"
+               HorizontalAlignment="Center" FontWeight="Bold"/>
+        
+        <TextBlock Text="ФИО:" Grid.Row="2"
+                   Margin="0 5"/>
+        <TextBox Name="FullNameTb"
+                 Grid.Row="3"/>
+        <TextBlock Grid.Row="4" Text="Почта:" 
+                   Margin="0 5"/>
+        <TextBox Name="EmailTb" Grid.Row="5"/>
+        <TextBlock Grid.Row="6" Text="Дата рождения:"
+                   Margin="0 5"/>
+        <TextBox Name="DateOfBirthTb" 
+                 Grid.Row="7"/>
+        <TextBlock Grid.Row="8" Text="Телефон:"
+                    Margin="0 5"/>
+        <TextBox Name="PhoneTb" 
+                 Grid.Row="9"/>
+        <TextBlock Grid.Row="10" Text="Логин:"
+                   Margin="0 5"/>
+        <TextBox Name="LoginTb" 
+                 Grid.Row="11"/>
+        <TextBlock Grid.Row="12" Text="Пароль:"
+                    Margin="0 5"/>
+        <PasswordBox Grid.Row="13" Name="PasswordPb" />
+        <Button Name="AddBtn" Content="Добавить"
+                Grid.Row="15"  Click="AddBtn_Click"/>
+    </Grid>
+</Window>

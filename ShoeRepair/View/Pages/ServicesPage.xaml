@@ -1,0 +1,51 @@
+﻿<Page x:Class="ShoeRepair.View.Pages.ServicesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ShoeRepair.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="874" d:DesignWidth="1600"
+      Title="ServicesPage">
+    <Grid>
+        <Grid Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+                
+            <ListView Name="ServicesLv">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Фотография" Width="125">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Photo}" Width="125" Height="90"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Button Name="DeleteBtn" Content="Удалить" Click="DeleteBtn_Click" 
+                        Grid.Row="2"/>
+                <Button Name="AddBtn" Content="Добавить новую"
+                         Grid.Row="4" Click="AddBtn_Click"/>
+                <Button Content="Редактировать" Name="EditMasterBtn" 
+                        Click="EditMasterBtn_Click_1"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

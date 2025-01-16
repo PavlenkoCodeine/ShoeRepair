@@ -1,0 +1,45 @@
+﻿<Window x:Class="ShoeRepair.View.Windows.EditServicesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShoeRepair.View.Windows"
+        mc:Ignorable="d"
+        Title="Редактирование услуг" Height="450" Width="550"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="50 20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Редактирование" Grid.ColumnSpan="3"
+               FontSize="30"
+               HorizontalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Text="Название:" Grid.Row="2" Grid.Column="0"/>
+        <TextBox Name="NameTb" Grid.Row="2" Grid.Column="2"/>
+
+        <TextBlock Text="Описание" Grid.Row="4" VerticalAlignment="Top" />
+        <TextBox Name="DescriptionTb" Grid.Row="4" Grid.Column="2"
+                 TextWrapping="Wrap"/>
+
+        <TextBlock Text="Цена" Grid.Row="6" Grid.Column="0"/>
+        <TextBox Name="PreisTb" Grid.Row="6" Grid.Column="2"/>
+
+        <Button Content="Сохранить изменения" Grid.Row="8"
+                Name="SaveBtn"
+                Grid.ColumnSpan="3" Click="SaveBtn_Click"/>
+    </Grid>
+</Window>

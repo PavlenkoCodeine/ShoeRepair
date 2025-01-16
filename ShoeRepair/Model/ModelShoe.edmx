@@ -1,0 +1,957 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Хранилище ShoeRepairModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Client" Type="int" Nullable="false" />
+          <Property Name="Id_Master" Type="int" Nullable="false" />
+          <Property Name="AppointmentDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Id_Status" Type="int" Nullable="false" />
+          <Property Name="Id_Feedback" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Chats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_User" Type="int" Nullable="false" />
+          <Property Name="Id_Admin" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="date" Type="datetime" Nullable="false" />
+          <Property Name="Mark" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterLeaves">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Master" Type="int" Nullable="false" />
+          <Property Name="Id_Vacation" Type="int" />
+          <Property Name="Id_SickLeave" Type="int" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Chat" Type="int" Nullable="false" />
+          <Property Name="Id_Sender" Type="int" Nullable="false" />
+          <Property Name="MessageText" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="SendDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Photo" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="ServicesAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_Services" Type="int" Nullable="false" />
+          <Property Name="Id_Appointment" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SickLeaves">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+          <Property Name="Reason" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Phone" Type="bigint" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="ProfileID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Appointments_Feedback">
+          <End Role="Feedback" Type="Self.Feedback" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feedback">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Feedback" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Master" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chats_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Chats" Type="Self.Chats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chats">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chats_User1">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Chats" Type="Self.Chats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chats">
+              <PropertyRef Name="Id_Admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterLeaves_SickLeaves">
+          <End Role="SickLeaves" Type="Self.SickLeaves" Multiplicity="0..1" />
+          <End Role="MasterLeaves" Type="Self.MasterLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SickLeaves">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterLeaves">
+              <PropertyRef Name="Id_SickLeave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterLeaves_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="MasterLeaves" Type="Self.MasterLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterLeaves">
+              <PropertyRef Name="Id_Master" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterLeaves_Vacations">
+          <End Role="Vacations" Type="Self.Vacations" Multiplicity="0..1" />
+          <End Role="MasterLeaves" Type="Self.MasterLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterLeaves">
+              <PropertyRef Name="Id_Vacation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Chats1">
+          <End Role="Chats" Type="Self.Chats" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chats">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Id_Chat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Messages" Type="Self.Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Id_Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Role">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Profile" Type="Self.Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesAppointment_Appointments">
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="1" />
+          <End Role="ServicesAppointment" Type="Self.ServicesAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesAppointment">
+              <PropertyRef Name="Id_Appointment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesAppointment_Services">
+          <End Role="Services" Type="Self.Services" Multiplicity="1" />
+          <End Role="ServicesAppointment" Type="Self.ServicesAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesAppointment">
+              <PropertyRef Name="Id_Services" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Profile">
+          <End Role="Profile" Type="Self.Profile" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище ShoeRepairModelContainer">
+          <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MasterLeaves" EntityType="Self.MasterLeaves" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Messages" EntityType="Self.Messages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Profile" EntityType="Self.Profile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServicesAppointment" EntityType="Self.ServicesAppointment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SickLeaves" EntityType="Self.SickLeaves" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacations" EntityType="Self.Vacations" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Appointments_Feedback" Association="Self.FK_Appointments_Feedback">
+            <End Role="Feedback" EntitySet="Feedback" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_Status" Association="Self.FK_Appointments_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_User" Association="Self.FK_Appointments_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_User1" Association="Self.FK_Appointments_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chats_User" Association="Self.FK_Chats_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Chats" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chats_User1" Association="Self.FK_Chats_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Chats" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterLeaves_SickLeaves" Association="Self.FK_MasterLeaves_SickLeaves">
+            <End Role="SickLeaves" EntitySet="SickLeaves" />
+            <End Role="MasterLeaves" EntitySet="MasterLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterLeaves_User" Association="Self.FK_MasterLeaves_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MasterLeaves" EntitySet="MasterLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterLeaves_Vacations" Association="Self.FK_MasterLeaves_Vacations">
+            <End Role="Vacations" EntitySet="Vacations" />
+            <End Role="MasterLeaves" EntitySet="MasterLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Chats1" Association="Self.FK_Messages_Chats1">
+            <End Role="Chats" EntitySet="Chats" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_User" Association="Self.FK_Messages_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Role" Association="Self.FK_Profile_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesAppointment_Appointments" Association="Self.FK_ServicesAppointment_Appointments">
+            <End Role="Appointments" EntitySet="Appointments" />
+            <End Role="ServicesAppointment" EntitySet="ServicesAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesAppointment_Services" Association="Self.FK_ServicesAppointment_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ServicesAppointment" EntitySet="ServicesAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Profile" Association="Self.FK_User_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShoeRepairModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ShoeRepairEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appointments" EntityType="ShoeRepairModel.Appointments" />
+          <EntitySet Name="Chats" EntityType="ShoeRepairModel.Chats" />
+          <EntitySet Name="Feedback" EntityType="ShoeRepairModel.Feedback" />
+          <EntitySet Name="MasterLeaves" EntityType="ShoeRepairModel.MasterLeaves" />
+          <EntitySet Name="Messages" EntityType="ShoeRepairModel.Messages" />
+          <EntitySet Name="Profile" EntityType="ShoeRepairModel.Profile" />
+          <EntitySet Name="Role" EntityType="ShoeRepairModel.Role" />
+          <EntitySet Name="Services" EntityType="ShoeRepairModel.Services" />
+          <EntitySet Name="ServicesAppointment" EntityType="ShoeRepairModel.ServicesAppointment" />
+          <EntitySet Name="SickLeaves" EntityType="ShoeRepairModel.SickLeaves" />
+          <EntitySet Name="Status" EntityType="ShoeRepairModel.Status" />
+          <EntitySet Name="User" EntityType="ShoeRepairModel.User" />
+          <EntitySet Name="Vacations" EntityType="ShoeRepairModel.Vacations" />
+          <AssociationSet Name="FK_Appointments_Feedback" Association="ShoeRepairModel.FK_Appointments_Feedback">
+            <End Role="Feedback" EntitySet="Feedback" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_Status" Association="ShoeRepairModel.FK_Appointments_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_User" Association="ShoeRepairModel.FK_Appointments_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Appointments_User1" Association="ShoeRepairModel.FK_Appointments_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesAppointment_Appointments" Association="ShoeRepairModel.FK_ServicesAppointment_Appointments">
+            <End Role="Appointments" EntitySet="Appointments" />
+            <End Role="ServicesAppointment" EntitySet="ServicesAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chats_User" Association="ShoeRepairModel.FK_Chats_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Chats" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Chats_User1" Association="ShoeRepairModel.FK_Chats_User1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Chats" EntitySet="Chats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_Chats1" Association="ShoeRepairModel.FK_Messages_Chats1">
+            <End Role="Chats" EntitySet="Chats" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterLeaves_SickLeaves" Association="ShoeRepairModel.FK_MasterLeaves_SickLeaves">
+            <End Role="SickLeaves" EntitySet="SickLeaves" />
+            <End Role="MasterLeaves" EntitySet="MasterLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterLeaves_User" Association="ShoeRepairModel.FK_MasterLeaves_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="MasterLeaves" EntitySet="MasterLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MasterLeaves_Vacations" Association="ShoeRepairModel.FK_MasterLeaves_Vacations">
+            <End Role="Vacations" EntitySet="Vacations" />
+            <End Role="MasterLeaves" EntitySet="MasterLeaves" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Messages_User" Association="ShoeRepairModel.FK_Messages_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Messages" EntitySet="Messages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Profile_Role" Association="ShoeRepairModel.FK_Profile_Role">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Profile" EntitySet="Profile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Profile" Association="ShoeRepairModel.FK_User_Profile">
+            <End Role="Profile" EntitySet="Profile" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ServicesAppointment_Services" Association="ShoeRepairModel.FK_ServicesAppointment_Services">
+            <End Role="Services" EntitySet="Services" />
+            <End Role="ServicesAppointment" EntitySet="ServicesAppointment" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Client" Type="Int32" Nullable="false" />
+          <Property Name="Id_Master" Type="Int32" Nullable="false" />
+          <Property Name="AppointmentDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_Status" Type="Int32" Nullable="false" />
+          <Property Name="Id_Feedback" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Feedback" Relationship="ShoeRepairModel.FK_Appointments_Feedback" FromRole="Appointments" ToRole="Feedback" />
+          <NavigationProperty Name="Status" Relationship="ShoeRepairModel.FK_Appointments_Status" FromRole="Appointments" ToRole="Status" />
+          <NavigationProperty Name="User" Relationship="ShoeRepairModel.FK_Appointments_User" FromRole="Appointments" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="ShoeRepairModel.FK_Appointments_User1" FromRole="Appointments" ToRole="User" />
+          <NavigationProperty Name="ServicesAppointment" Relationship="ShoeRepairModel.FK_ServicesAppointment_Appointments" FromRole="Appointments" ToRole="ServicesAppointment" />
+        </EntityType>
+        <EntityType Name="Chats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_User" Type="Int32" Nullable="false" />
+          <Property Name="Id_Admin" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="User" Relationship="ShoeRepairModel.FK_Chats_User" FromRole="Chats" ToRole="User" />
+          <NavigationProperty Name="User1" Relationship="ShoeRepairModel.FK_Chats_User1" FromRole="Chats" ToRole="User" />
+          <NavigationProperty Name="Messages" Relationship="ShoeRepairModel.FK_Messages_Chats1" FromRole="Chats" ToRole="Messages" />
+        </EntityType>
+        <EntityType Name="Feedback">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Comments" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Mark" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointments" Relationship="ShoeRepairModel.FK_Appointments_Feedback" FromRole="Feedback" ToRole="Appointments" />
+        </EntityType>
+        <EntityType Name="MasterLeaves">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Master" Type="Int32" Nullable="false" />
+          <Property Name="Id_Vacation" Type="Int32" />
+          <Property Name="Id_SickLeave" Type="Int32" />
+          <NavigationProperty Name="SickLeaves" Relationship="ShoeRepairModel.FK_MasterLeaves_SickLeaves" FromRole="MasterLeaves" ToRole="SickLeaves" />
+          <NavigationProperty Name="User" Relationship="ShoeRepairModel.FK_MasterLeaves_User" FromRole="MasterLeaves" ToRole="User" />
+          <NavigationProperty Name="Vacations" Relationship="ShoeRepairModel.FK_MasterLeaves_Vacations" FromRole="MasterLeaves" ToRole="Vacations" />
+        </EntityType>
+        <EntityType Name="Messages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Chat" Type="Int32" Nullable="false" />
+          <Property Name="Id_Sender" Type="Int32" Nullable="false" />
+          <Property Name="MessageText" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SendDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Chats" Relationship="ShoeRepairModel.FK_Messages_Chats1" FromRole="Messages" ToRole="Chats" />
+          <NavigationProperty Name="User" Relationship="ShoeRepairModel.FK_Messages_User" FromRole="Messages" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RoleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="ShoeRepairModel.FK_Profile_Role" FromRole="Profile" ToRole="Role" />
+          <NavigationProperty Name="User" Relationship="ShoeRepairModel.FK_User_Profile" FromRole="Profile" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Profile" Relationship="ShoeRepairModel.FK_Profile_Role" FromRole="Role" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ServicesAppointment" Relationship="ShoeRepairModel.FK_ServicesAppointment_Services" FromRole="Services" ToRole="ServicesAppointment" />
+        </EntityType>
+        <EntityType Name="ServicesAppointment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_Services" Type="Int32" Nullable="false" />
+          <Property Name="Id_Appointment" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Appointments" Relationship="ShoeRepairModel.FK_ServicesAppointment_Appointments" FromRole="ServicesAppointment" ToRole="Appointments" />
+          <NavigationProperty Name="Services" Relationship="ShoeRepairModel.FK_ServicesAppointment_Services" FromRole="ServicesAppointment" ToRole="Services" />
+        </EntityType>
+        <EntityType Name="SickLeaves">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Reason" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterLeaves" Relationship="ShoeRepairModel.FK_MasterLeaves_SickLeaves" FromRole="SickLeaves" ToRole="MasterLeaves" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Appointments" Relationship="ShoeRepairModel.FK_Appointments_Status" FromRole="Status" ToRole="Appointments" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="Int64" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProfileID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Appointments" Relationship="ShoeRepairModel.FK_Appointments_User" FromRole="User" ToRole="Appointments" />
+          <NavigationProperty Name="Appointments1" Relationship="ShoeRepairModel.FK_Appointments_User1" FromRole="User" ToRole="Appointments" />
+          <NavigationProperty Name="Chats" Relationship="ShoeRepairModel.FK_Chats_User" FromRole="User" ToRole="Chats" />
+          <NavigationProperty Name="Chats1" Relationship="ShoeRepairModel.FK_Chats_User1" FromRole="User" ToRole="Chats" />
+          <NavigationProperty Name="MasterLeaves" Relationship="ShoeRepairModel.FK_MasterLeaves_User" FromRole="User" ToRole="MasterLeaves" />
+          <NavigationProperty Name="Messages" Relationship="ShoeRepairModel.FK_Messages_User" FromRole="User" ToRole="Messages" />
+          <NavigationProperty Name="Profile" Relationship="ShoeRepairModel.FK_User_Profile" FromRole="User" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Vacations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="MasterLeaves" Relationship="ShoeRepairModel.FK_MasterLeaves_Vacations" FromRole="Vacations" ToRole="MasterLeaves" />
+        </EntityType>
+        <Association Name="FK_Appointments_Feedback">
+          <End Type="ShoeRepairModel.Feedback" Role="Feedback" Multiplicity="0..1" />
+          <End Type="ShoeRepairModel.Appointments" Role="Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feedback">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Feedback" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_Status">
+          <End Type="ShoeRepairModel.Status" Role="Status" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Appointments" Role="Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_User">
+          <End Type="ShoeRepairModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Appointments" Role="Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Client" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Appointments_User1">
+          <End Type="ShoeRepairModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Appointments" Role="Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="Id_Master" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesAppointment_Appointments">
+          <End Type="ShoeRepairModel.Appointments" Role="Appointments" Multiplicity="1" />
+          <End Type="ShoeRepairModel.ServicesAppointment" Role="ServicesAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Appointments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesAppointment">
+              <PropertyRef Name="Id_Appointment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chats_User">
+          <End Type="ShoeRepairModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Chats" Role="Chats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chats">
+              <PropertyRef Name="Id_User" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Chats_User1">
+          <End Type="ShoeRepairModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Chats" Role="Chats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chats">
+              <PropertyRef Name="Id_Admin" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_Chats1">
+          <End Type="ShoeRepairModel.Chats" Role="Chats" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Messages" Role="Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chats">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Id_Chat" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterLeaves_SickLeaves">
+          <End Type="ShoeRepairModel.SickLeaves" Role="SickLeaves" Multiplicity="0..1" />
+          <End Type="ShoeRepairModel.MasterLeaves" Role="MasterLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SickLeaves">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterLeaves">
+              <PropertyRef Name="Id_SickLeave" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterLeaves_User">
+          <End Type="ShoeRepairModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShoeRepairModel.MasterLeaves" Role="MasterLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterLeaves">
+              <PropertyRef Name="Id_Master" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MasterLeaves_Vacations">
+          <End Type="ShoeRepairModel.Vacations" Role="Vacations" Multiplicity="0..1" />
+          <End Type="ShoeRepairModel.MasterLeaves" Role="MasterLeaves" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vacations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterLeaves">
+              <PropertyRef Name="Id_Vacation" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Messages_User">
+          <End Type="ShoeRepairModel.User" Role="User" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Messages" Role="Messages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Messages">
+              <PropertyRef Name="Id_Sender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Profile_Role">
+          <End Type="ShoeRepairModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Profile" Role="Profile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Profile">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Profile">
+          <End Type="ShoeRepairModel.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="ShoeRepairModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="ProfileID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ServicesAppointment_Services">
+          <End Type="ShoeRepairModel.Services" Role="Services" Multiplicity="1" />
+          <End Type="ShoeRepairModel.ServicesAppointment" Role="ServicesAppointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Services">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ServicesAppointment">
+              <PropertyRef Name="Id_Services" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище ShoeRepairModelContainer" CdmEntityContainer="ShoeRepairEntities">
+          <EntitySetMapping Name="Appointments">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Appointments">
+              <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Id_Feedback" ColumnName="Id_Feedback" />
+                <ScalarProperty Name="Id_Status" ColumnName="Id_Status" />
+                <ScalarProperty Name="AppointmentDateTime" ColumnName="AppointmentDateTime" />
+                <ScalarProperty Name="Id_Master" ColumnName="Id_Master" />
+                <ScalarProperty Name="Id_Client" ColumnName="Id_Client" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chats">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Chats">
+              <MappingFragment StoreEntitySet="Chats">
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Id_Admin" ColumnName="Id_Admin" />
+                <ScalarProperty Name="Id_User" ColumnName="Id_User" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Feedback">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Feedback">
+              <MappingFragment StoreEntitySet="Feedback">
+                <ScalarProperty Name="Mark" ColumnName="Mark" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterLeaves">
+            <EntityTypeMapping TypeName="ShoeRepairModel.MasterLeaves">
+              <MappingFragment StoreEntitySet="MasterLeaves">
+                <ScalarProperty Name="Id_SickLeave" ColumnName="Id_SickLeave" />
+                <ScalarProperty Name="Id_Vacation" ColumnName="Id_Vacation" />
+                <ScalarProperty Name="Id_Master" ColumnName="Id_Master" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Messages">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Messages">
+              <MappingFragment StoreEntitySet="Messages">
+                <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+                <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+                <ScalarProperty Name="Id_Sender" ColumnName="Id_Sender" />
+                <ScalarProperty Name="Id_Chat" ColumnName="Id_Chat" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profile">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Profile">
+              <MappingFragment StoreEntitySet="Profile">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Services">
+              <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Photo" ColumnName="Photo" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServicesAppointment">
+            <EntityTypeMapping TypeName="ShoeRepairModel.ServicesAppointment">
+              <MappingFragment StoreEntitySet="ServicesAppointment">
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Id_Appointment" ColumnName="Id_Appointment" />
+                <ScalarProperty Name="Id_Services" ColumnName="Id_Services" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SickLeaves">
+            <EntityTypeMapping TypeName="ShoeRepairModel.SickLeaves">
+              <MappingFragment StoreEntitySet="SickLeaves">
+                <ScalarProperty Name="Reason" ColumnName="Reason" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ShoeRepairModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="ProfileID" ColumnName="ProfileID" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacations">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Vacations">
+              <MappingFragment StoreEntitySet="Vacations">
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

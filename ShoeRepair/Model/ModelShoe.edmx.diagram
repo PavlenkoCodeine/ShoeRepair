@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="db868e857c4f41e28db372c8b8ecb395" Name="Diagram1" ZoomLevel="21">
+        <EntityTypeShape EntityType="ShoeRepairModel.Appointments" Width="1.5" PointX="7.5" PointY="4.375" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Chats" Width="1.5" PointX="7.5" PointY="9" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Feedback" Width="1.5" PointX="5.25" PointY="9.25" />
+        <EntityTypeShape EntityType="ShoeRepairModel.MasterLeaves" Width="1.5" PointX="10.5" PointY="2.875" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Messages" Width="1.5" PointX="9.75" PointY="6.625" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Profile" Width="1.5" PointX="3" PointY="4.875" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Role" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Services" Width="1.5" PointX="10.5" PointY="10" />
+        <EntityTypeShape EntityType="ShoeRepairModel.ServicesAppointment" Width="1.5" PointX="12.75" PointY="4.875" />
+        <EntityTypeShape EntityType="ShoeRepairModel.SickLeaves" Width="1.5" PointX="8.25" PointY="0.875" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Status" Width="1.5" PointX="5.25" PointY="1.875" />
+        <EntityTypeShape EntityType="ShoeRepairModel.User" Width="1.5" PointX="5.25" PointY="4.375" />
+        <EntityTypeShape EntityType="ShoeRepairModel.Vacations" Width="1.5" PointX="8.25" PointY="12.5" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Appointments_Feedback" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Appointments_Status" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Appointments_User" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Appointments_User1" />
+        <AssociationConnector Association="ShoeRepairModel.FK_ServicesAppointment_Appointments" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Chats_User" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Chats_User1" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Messages_Chats1" />
+        <AssociationConnector Association="ShoeRepairModel.FK_MasterLeaves_SickLeaves" />
+        <AssociationConnector Association="ShoeRepairModel.FK_MasterLeaves_User" />
+        <AssociationConnector Association="ShoeRepairModel.FK_MasterLeaves_Vacations" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Messages_User" />
+        <AssociationConnector Association="ShoeRepairModel.FK_Profile_Role" />
+        <AssociationConnector Association="ShoeRepairModel.FK_User_Profile" />
+        <AssociationConnector Association="ShoeRepairModel.FK_ServicesAppointment_Services" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

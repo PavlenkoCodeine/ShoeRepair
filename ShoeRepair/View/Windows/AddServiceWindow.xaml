@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoeRepair.View.Windows"
         mc:Ignorable="d"
-        Title="Добавить новую услугу" Height="450" Width="450"
+        Title="Добавить новую услугу" Height="400" Width="450"
         WindowStartupLocation="CenterScreen"   ResizeMode="NoResize">
     <Grid Margin="20">
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="10"/>
@@ -28,8 +28,7 @@
 
         <TextBlock Text="Описание:" Grid.Row="4"/>
         <TextBox Name="DescriptionTb" Grid.Row="5" Margin="0,5" 
-                 VerticalAlignment="Top"
-                 TextWrapping="Wrap" Height="90"/>
+                 TextWrapping="Wrap"/>
 
         <TextBlock Text="Цена:" Grid.Row="6"/>
         <TextBox Name="PriceTb" Grid.Row="7" Margin="0,5"/>

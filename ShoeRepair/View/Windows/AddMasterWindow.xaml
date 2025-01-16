@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ShoeRepair.View.Windows"
         mc:Ignorable="d"
-        Title="Добавить нового мастера" Height="640" Width="500"
+        Title="Добавить нового мастера" Height="620" Width="500"
         WindowStartupLocation="CenterScreen"  ResizeMode="NoResize" >
     <Grid Margin="20">
         <Grid.RowDefinitions>

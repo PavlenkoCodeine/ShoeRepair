@@ -62,6 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\Categories.cs">
+      <DependentUpon>ModelShoe.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model\MasterLeaves.cs">
       <DependentUpon>ModelShoe.tt</DependentUpon>
     </Compile>

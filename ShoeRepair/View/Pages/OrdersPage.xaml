@@ -42,7 +42,7 @@
         <!--#region Заявки-->
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"/>
+                <ColumnDefinition Width="1.4*"/>
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="0.9*"/>
             </Grid.ColumnDefinitions>
@@ -147,7 +147,7 @@
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Услуга" Width="250"
+                            <GridViewColumn Header="Услуга" Width="360"
                                             DisplayMemberBinding="{Binding Name}"/>
                             <GridViewColumn Header="Количество" Width="109"
                                             DisplayMemberBinding="{Binding Quantity}" />

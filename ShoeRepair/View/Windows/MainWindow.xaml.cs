@@ -42,7 +42,7 @@ namespace ShoeRepair
             }
             else if (App.currentUser.Profile.RoleID == 3)
             {
-                FrameHelper.mainFrame.Navigate(new SupportChatPage());
+                FrameHelper.mainFrame.Navigate(new ServiceUserPage());
                 OrderBtn.Visibility = Visibility.Hidden;
                 ClientBtn.Visibility = Visibility.Hidden;
                 MasterBtn.Visibility = Visibility.Hidden;

@@ -8,14 +8,24 @@
       d:DesignHeight="874" d:DesignWidth="1600"
       Title="ServicesPage">
     <Grid>
-        <Grid Margin="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="7*" />
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Категория:" VerticalAlignment="Center" />
+                <ComboBox x:Name="FilterCb" SelectionChanged="FilterCb_SelectionChanged"
+                          Width="300" Margin="10"/> 
                 
-            <ListView Name="ServicesLv">
+            </StackPanel>
+            <ListView Name="ServicesLv" Grid.Row="2" >
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Фотография" Width="125">
@@ -25,13 +35,15 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Категория" Width="250"
+                DisplayMemberBinding="{Binding Categories.Name}"/>
                         <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
                         <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Grid Grid.Column="2">
+            <Grid Grid.Column="2" Grid.Row="2">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
                     <RowDefinition Height="15" />

@@ -12,21 +12,16 @@ namespace ShoeRepair.Model
     using System;
     using System.Collections.Generic;
     
-    public partial class Services
+    public partial class Categories
     {
-        public Services()
+        public Categories()
         {
-            this.ServicesAppointment = new HashSet<ServicesAppointment>();
+            this.Services = new HashSet<Services>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public decimal Price { get; set; }
-        public string Photo { get; set; }
-        public int Id_Categories { get; set; }
     
-        public virtual Categories Categories { get; set; }
-        public virtual ICollection<ServicesAppointment> ServicesAppointment { get; set; }
+        public virtual ICollection<Services> Services { get; set; }
     }
 }

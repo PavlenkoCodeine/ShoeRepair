@@ -26,6 +26,7 @@ namespace ShoeRepair.Model
         }
     
         public DbSet<Appointments> Appointments { get; set; }
+        public DbSet<Categories> Categories { get; set; }
         public DbSet<Chats> Chats { get; set; }
         public DbSet<Feedback> Feedback { get; set; }
         public DbSet<MasterLeaves> MasterLeaves { get; set; }

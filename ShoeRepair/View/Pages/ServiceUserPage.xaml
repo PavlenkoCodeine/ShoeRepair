@@ -10,12 +10,23 @@
     <Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"/>
-                <ColumnDefinition Width="40"/>
-                <ColumnDefinition Width="0.9*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Grid>
-                <ListBox x:Name="OrdersLb" SelectionChanged="OrdersLb_SelectionChanged"  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Категория:" VerticalAlignment="Center" />
+                <ComboBox x:Name="FilterCb" SelectionChanged="FilterCb_SelectionChanged"
+                          Width="300" Margin="10"/>
+            </StackPanel>
+            <Grid Grid.Row="2">
+               
+                <ListBox x:Name="ServicesLv" SelectionChanged="ServicesLv_SelectionChanged" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel/>
@@ -23,35 +34,100 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <Border BorderThickness="1" BorderBrush="#FF35BAFF" Padding="20" Width="350" Margin="5" CornerRadius="10" Background="White" >
+                            <Border BorderThickness="1" BorderBrush="#FF35BAFF" Padding="20" Width="285"
+                                    Height="320"
+                                    Margin="5" CornerRadius="10" Background="White" >
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="10"/>
                                         <RowDefinition Height="auto"/>
                                         <RowDefinition Height="10"/>
-                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="1*"/>
+                                        <RowDefinition Height="20"/>
                                     </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="1*" />
-                                        <ColumnDefinition Width="1*" />
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Text="{Binding Id, StringFormat=№ {0}}" FontSize="25" 
-                                       Grid.ColumnSpan="2" FontWeight="SemiBold"/>
-                                    <TextBlock Grid.Column="2" Text="{Binding Status.Name}" FontSize="15"
-                                       Foreground="#FF4089FF"
-                                       HorizontalAlignment="Right"
-                                       VerticalAlignment="Stretch"/>
-                                    <TextBlock Grid.Row="2" Text="{Binding User.FullName, StringFormat=Клиент: {0}}"
-                                       Grid.ColumnSpan="2" FontSize="16"/>
-                                    <TextBlock Grid.Row="4" Text="{Binding Feedback.Mark, StringFormat=Оценка: {0}}"
-                                       Grid.ColumnSpan="2" FontSize="18"/>
+                                    <Image Source="{Binding Photo}" Width="250" Height="190"/>
+                                    <TextBlock Text="{Binding Name}" FontSize="20"  TextWrapping="Wrap"
+                                               Grid.Row="2" FontWeight="SemiBold"/>
+                                    <TextBlock Grid.Row="5"  Text="{Binding Price}" FontSize="18"
+                                               Foreground="#FF2776F7" FontWeight="Regular"
+                                               HorizontalAlignment="Left"/>
                                 </Grid>
                             </Border>
-
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+            </Grid>
+            <Grid Grid.Column="2" Grid.Row="2" Margin="85 10" 
+                  x:Name="ServiceDetailsGrid" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="15" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="25" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Информация о услуге" FontWeight="Bold" 
+                FontSize="25" HorizontalAlignment="Center"
+                Grid.ColumnSpan="3"/>
+                <TextBlock Text="Название:" Grid.Row="2"/>
+                <TextBlock Text="{Binding Name}" x:Name="NameTbl"
+                Grid.Row="2" Grid.Column="2"/>
+                <TextBlock Text="Описание:" Grid.Row="4" />
+                <TextBlock Text="{Binding Description}" 
+                x:Name="DescriptionTbl" Grid.Row="4" Grid.Column="2"/>
+                <TextBlock Text="Цена: " Grid.Row="6"/>
+                <TextBlock Text="{Binding Price}" 
+                           x:Name="PriceTbl" Grid.Row="6" Grid.Column="2"/>
+                <TextBlock Text="Количество:" Grid.Row="8"/>
+                <TextBox  x:Name="QuanityTbl" Grid.Row="8" Grid.Column="2"
+                          Width="525" HorizontalAlignment="Left"/>
+                <Button Grid.Row="10" Grid.ColumnSpan="3" Width="525" 
+                        Name="AddKorBtn" Click="AddKorBtn_Click"
+                        HorizontalAlignment="Center"  Content="Добавить в корзину"/>
+                <TextBlock Text="Корзина" FontWeight="Bold" Grid.Row="12"
+                           Grid.ColumnSpan="3" 
+                           FontSize="25"  HorizontalAlignment="Center"/>
+                <DataGrid x:Name="ServicesDg" Grid.Row="14" AutoGenerateColumns="False"
+                          Grid.ColumnSpan="3" FontSize="20"
+                          CanUserAddRows="False" SelectionMode="Single">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Услуга" 
+                                            Binding="{Binding Services.Name}"
+                                            IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Количество" 
+                                            Binding="{Binding Quantity}" 
+                                            IsReadOnly="True"/>
+                        <DataGridTextColumn Header="Стоимость" 
+                                            Binding="{Binding Price, StringFormat=N2}"
+                                            IsReadOnly="True"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <TextBlock Text="Общая Стоимость Проекта: " Grid.Row="16" Grid.ColumnSpan="3"/>
+                <TextBlock x:Name="TotalCostTb" Text="{Binding TotalPrice, StringFormat=C}" 
+                       FontWeight="Bold" Margin="230 0" Grid.Row="16" Grid.Column="2"/>
+                <Button Name="AddBtn" Content="Подать заявку"  Grid.Row="18" 
+                        Click="AddBtn_Click" Grid.ColumnSpan="3"/>
+
             </Grid>
         </Grid>
     </Grid>

@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ShoeRepair.View.Pages
 {
@@ -23,10 +24,19 @@ namespace ShoeRepair.View.Pages
     /// </summary>
     public partial class ServicesPage : Page
     {
+        List<Services> services = App.Ent.Services.ToList();
+        List<Categories> categories = App.Ent.Categories.ToList();
         public ServicesPage()
         {
             InitializeComponent();
             ServicesLv.ItemsSource = App.Ent.Services.ToList();
+
+            categories.Insert(0, new Categories() { Name = "Все категории" });
+            FilterCb.ItemsSource = App.Ent.Categories.ToList();
+            FilterCb.ItemsSource = categories;
+            FilterCb.DisplayMemberPath = "Name";
+            FilterCb.SelectedValuePath = "Id";
+            FilterCb.SelectedIndex = 0;
         }
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -83,6 +93,22 @@ namespace ShoeRepair.View.Pages
             EditServicesWindow editWindow = new EditServicesWindow(selectedServices);
             editWindow.ShowDialog();
             ServicesLv.ItemsSource = App.Ent.Services.ToList();
+        }
+
+
+        private void FilterCb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FilterCb.SelectedValue is int selectedCategoryId)
+            {
+                if (selectedCategoryId == 0)
+                {
+                    ServicesLv.ItemsSource = services; 
+                }
+                else
+                {
+                    ServicesLv.ItemsSource = services.Where(s => s.Id_Categories == selectedCategoryId).ToList();
+                }
+            }
         }
     }
 }

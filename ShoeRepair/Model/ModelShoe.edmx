@@ -17,6 +17,13 @@
           <Property Name="Id_Feedback" Type="int" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Chats">
           <Key>
             <PropertyRef Name="Id" />
@@ -78,8 +85,9 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
-          <Property Name="Photo" Type="nvarchar(max)" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Photo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Id_Categories" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ServicesAppointment">
           <Key>
@@ -270,6 +278,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Services_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
+          <End Role="Services" Type="Self.Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="Id_Categories" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ServicesAppointment_Appointments">
           <End Role="Appointments" Type="Self.Appointments" Multiplicity="1" />
           <End Role="ServicesAppointment" Type="Self.ServicesAppointment" Multiplicity="*" />
@@ -308,6 +328,7 @@
         </Association>
         <EntityContainer Name="Хранилище ShoeRepairModelContainer">
           <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Chats" EntityType="Self.Chats" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Feedback" EntityType="Self.Feedback" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MasterLeaves" EntityType="Self.MasterLeaves" Schema="dbo" store:Type="Tables" />
@@ -368,6 +389,10 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="Profile" EntitySet="Profile" />
           </AssociationSet>
+          <AssociationSet Name="FK_Services_Categories" Association="Self.FK_Services_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Services" EntitySet="Services" />
+          </AssociationSet>
           <AssociationSet Name="FK_ServicesAppointment_Appointments" Association="Self.FK_ServicesAppointment_Appointments">
             <End Role="Appointments" EntitySet="Appointments" />
             <End Role="ServicesAppointment" EntitySet="ServicesAppointment" />
@@ -387,6 +412,7 @@
       <Schema Namespace="ShoeRepairModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="ShoeRepairEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Appointments" EntityType="ShoeRepairModel.Appointments" />
+          <EntitySet Name="Categories" EntityType="ShoeRepairModel.Categories" />
           <EntitySet Name="Chats" EntityType="ShoeRepairModel.Chats" />
           <EntitySet Name="Feedback" EntityType="ShoeRepairModel.Feedback" />
           <EntitySet Name="MasterLeaves" EntityType="ShoeRepairModel.MasterLeaves" />
@@ -418,6 +444,10 @@
           <AssociationSet Name="FK_ServicesAppointment_Appointments" Association="ShoeRepairModel.FK_ServicesAppointment_Appointments">
             <End Role="Appointments" EntitySet="Appointments" />
             <End Role="ServicesAppointment" EntitySet="ServicesAppointment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Services_Categories" Association="ShoeRepairModel.FK_Services_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Services" EntitySet="Services" />
           </AssociationSet>
           <AssociationSet Name="FK_Chats_User" Association="ShoeRepairModel.FK_Chats_User">
             <End Role="User" EntitySet="User" />
@@ -476,6 +506,14 @@
           <NavigationProperty Name="User" Relationship="ShoeRepairModel.FK_Appointments_User" FromRole="Appointments" ToRole="User" />
           <NavigationProperty Name="User1" Relationship="ShoeRepairModel.FK_Appointments_User1" FromRole="Appointments" ToRole="User" />
           <NavigationProperty Name="ServicesAppointment" Relationship="ShoeRepairModel.FK_ServicesAppointment_Appointments" FromRole="Appointments" ToRole="ServicesAppointment" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Services" Relationship="ShoeRepairModel.FK_Services_Categories" FromRole="Categories" ToRole="Services" />
         </EntityType>
         <EntityType Name="Chats">
           <Key>
@@ -550,8 +588,10 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
-          <Property Name="Photo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Photo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Id_Categories" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categories" Relationship="ShoeRepairModel.FK_Services_Categories" FromRole="Services" ToRole="Categories" />
           <NavigationProperty Name="ServicesAppointment" Relationship="ShoeRepairModel.FK_ServicesAppointment_Services" FromRole="Services" ToRole="ServicesAppointment" />
         </EntityType>
         <EntityType Name="ServicesAppointment">
@@ -668,6 +708,18 @@
             </Principal>
             <Dependent Role="ServicesAppointment">
               <PropertyRef Name="Id_Appointment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Services_Categories">
+          <End Type="ShoeRepairModel.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="ShoeRepairModel.Services" Role="Services" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Services">
+              <PropertyRef Name="Id_Categories" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -810,6 +862,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="ShoeRepairModel.Categories">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Chats">
             <EntityTypeMapping TypeName="ShoeRepairModel.Chats">
               <MappingFragment StoreEntitySet="Chats">
@@ -873,6 +933,7 @@
           <EntitySetMapping Name="Services">
             <EntityTypeMapping TypeName="ShoeRepairModel.Services">
               <MappingFragment StoreEntitySet="Services">
+                <ScalarProperty Name="Id_Categories" ColumnName="Id_Categories" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

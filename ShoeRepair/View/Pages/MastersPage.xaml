@@ -49,7 +49,7 @@
                             <GridViewColumn Header="Фотография" Width="120">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <Image Source="{Binding Profile.Photo}" Width="120" Height="80"/>
+                                        <Image Source="{Binding Profile.Photo}" Width="140" Height="90"/>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

@@ -71,6 +71,9 @@
     <Compile Include="Model\Vacations.cs">
       <DependentUpon>ModelShoe.tt</DependentUpon>
     </Compile>
+    <Compile Include="View\Pages\ServiceUserPage.xaml.cs">
+      <DependentUpon>ServiceUserPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Windows\AddMasterWindow.xaml.cs">
       <DependentUpon>AddMasterWindow.xaml</DependentUpon>
     </Compile>
@@ -133,6 +136,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Pages\ServicesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ServiceUserPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

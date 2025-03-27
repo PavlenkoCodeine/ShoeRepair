@@ -39,6 +39,7 @@ namespace ShoeRepair
                 ServiseBtn.Visibility = Visibility.Visible;
                 ChatBtn.Visibility = Visibility.Visible;
                 ServiceUserBtn.Visibility = Visibility.Hidden;
+                OrdersUserBtn.Visibility = Visibility.Hidden;
             }
             else if (App.currentUser.Profile.RoleID == 3)
             {
@@ -49,6 +50,7 @@ namespace ShoeRepair
                 ServiseBtn.Visibility = Visibility.Hidden;
                 ChatBtn.Visibility = Visibility.Visible;
                 ServiceUserBtn.Visibility = Visibility.Visible;
+                OrdersUserBtn.Visibility = Visibility.Visible;
             }
 
         }
@@ -87,6 +89,12 @@ namespace ShoeRepair
         private void ServiceUserBtn_Click(object sender, RoutedEventArgs e)
         {
             FrameHelper.mainFrame.Navigate(new ServiceUserPage());
+        }
+
+        private void OrdersUserBtn_Click(object sender, RoutedEventArgs e)
+        {
+            FrameHelper.mainFrame.Navigate(new ProfilePage());
+            
         }
     }
 }

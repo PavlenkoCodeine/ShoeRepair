@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="db868e857c4f41e28db372c8b8ecb395" Name="Diagram1" ZoomLevel="67">
-        <EntityTypeShape EntityType="ShoeRepairModel.Appointments" Width="1.5" PointX="7.5" PointY="4.375" />
+      <Diagram DiagramId="db868e857c4f41e28db372c8b8ecb395" Name="Diagram1" ZoomLevel="128">
+        <EntityTypeShape EntityType="ShoeRepairModel.Appointments" Width="1.5" PointX="7.125" PointY="3.125" />
         <EntityTypeShape EntityType="ShoeRepairModel.Categories" Width="1.5" PointX="8.25" PointY="1.25" />
         <EntityTypeShape EntityType="ShoeRepairModel.Chats" Width="1.5" PointX="7.5" PointY="12.125" />
         <EntityTypeShape EntityType="ShoeRepairModel.Feedback" Width="1.5" PointX="5.25" PointY="0.875" />

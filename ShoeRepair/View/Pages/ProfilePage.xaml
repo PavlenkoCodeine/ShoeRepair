@@ -5,29 +5,65 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ShoeRepair.View.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="884" d:DesignWidth="1600"
+      d:DesignHeight="874" d:DesignWidth="1600"
       Title="ProfilePage">
-    <StackPanel Margin="20">
-        <TextBlock Text="Профиль администратора" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-
-        <TextBlock Text="Имя:"/>
-        <TextBox Text="{Binding Name}" Margin="0,0,0,10"/>
-
-        <TextBlock Text="Email:"/>
-        <TextBox Text="{Binding Email}" Margin="0,0,0,10"/>
-
-        <TextBlock Text="Телефон:"/>
-        <TextBox Text="{Binding PhoneNumber}" Margin="0,0,0,10"/>
-
-        <TextBlock Text="Текущий пароль:"/>
-        <PasswordBox Margin="0,0,0,10"/>
-
-        <TextBlock Text="Новый пароль:"/>
-        <PasswordBox Margin="0,0,0,10"/>
-
-        <TextBlock Text="Подтвердите новый пароль:"/>
-        <PasswordBox Margin="0,0,0,20"/>
-
-        <Button Content="Сохранить изменения" Width="200" HorizontalAlignment="Left" Click="Button_Click"/>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="250" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="15" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Моя заявка"
+            FontSize="30" FontWeight="SemiBold" />
+        <ListView Name="AppointmentsLv"  Grid.Row="2"   SelectionChanged="AppointmentsLv_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                    <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn Header="Дата" DisplayMemberBinding="{Binding AppointmentDateTime, StringFormat={}{0:dd.MM.yyyy}}"
+                                        Width="120"/>
+                        <GridViewColumn Header="Статус" DisplayMemberBinding="{Binding Status.Name}"
+                                        Width="200"/>
+                    <GridViewColumn Header="Оценка" DisplayMemberBinding="{Binding Feedback.Mark}"/>
+                    <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}" 
+                                        Width="200"/>
+                </GridView>
+                </ListView.View>
+            </ListView>
+        <Grid Name="SelectedUserGrid" Grid.Row="4" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <TextBlock Text="Услуги заявки"
+                       FontSize="30" FontWeight="SemiBold" />
+            <ListView Name="ServiceLv" Grid.Row="2">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Фотография" Width="125">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Photo}" Width="125" Height="90"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Название" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Описание" DisplayMemberBinding="{Binding Description}"/>
+                        <GridViewColumn Header="Цена" DisplayMemberBinding="{Binding Price}"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <Button Name="FeedBeckBtn"  Grid.Column="2" VerticalAlignment="Top"
+                Width="400"
+                Grid.Row="2" Height="50" Content="Оставить отзыв"
+                Click="FeedBeckBtn_Click"/> 
+    </Grid>
 </Page>

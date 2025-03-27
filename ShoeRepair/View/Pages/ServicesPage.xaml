@@ -52,10 +52,10 @@
                     <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
                 <Button Name="DeleteBtn" Content="Удалить" Click="DeleteBtn_Click" 
-                        Grid.Row="2"/>
+                        Grid.Row="2" Margin="0 0 20 0"/>
                 <Button Name="AddBtn" Content="Добавить новую"
-                         Grid.Row="4" Click="AddBtn_Click"/>
-                <Button Content="Редактировать" Name="EditMasterBtn" 
+                         Grid.Row="4" Click="AddBtn_Click"  Margin="0 0 20 0"/>
+                <Button Content="Редактировать" Name="EditMasterBtn"  Margin="0 0 20 0"
                         Click="EditMasterBtn_Click_1"/>
             </Grid>
         </Grid>

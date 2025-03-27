@@ -46,6 +46,10 @@
             <Button Content="Услуги" Name="ServiceUserBtn" Foreground="White"
                     FontSize="35" Margin="0 12"  Grid.Column="2"
                     Click="ServiceUserBtn_Click"  HorizontalAlignment="Center"
+                    Style="{StaticResource MenuButtonStyle}"/> 
+            <Button Content="Заявки" Name="OrdersUserBtn" Foreground="White"
+                    FontSize="35" Margin="0 12"  Grid.Column="6"
+                    Click="OrdersUserBtn_Click"  HorizontalAlignment="Center"
                     Style="{StaticResource MenuButtonStyle}"/>
             <!--Админ-->
             <Button Content="Заказы" Name="OrderBtn" Foreground="White"
@@ -54,7 +58,7 @@
                     Style="{StaticResource MenuButtonStyle}"/>
             
             <Button Content="Клиенты" Name="ClientBtn" Foreground="White"
-                    FontSize="35" Margin="0 12" Grid.Column="4"
+                    FontSize="35" Margin="0 12" Grid.Column="10"
                     Click="ClientBtn_Click"  HorizontalAlignment="Center"
                     Style="{StaticResource MenuButtonStyle}"/> 
             
@@ -69,7 +73,7 @@
                     Style="{StaticResource MenuButtonStyle}"/>
             
             <Button Content="Чат" Name="ChatBtn" Foreground="White"
-                    FontSize="35" Margin="0 12" Grid.Column="10"
+                    FontSize="35" Margin="0 12" Grid.Column="4"
                     Click="ChatBtn_Click"  HorizontalAlignment="Center"
                     Style="{StaticResource MenuButtonStyle}"/>
             

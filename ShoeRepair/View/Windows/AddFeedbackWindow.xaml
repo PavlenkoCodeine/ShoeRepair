@@ -1,0 +1,42 @@
+﻿<Window x:Class="ShoeRepair.View.Windows.AddFeedbackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShoeRepair.View.Windows"
+        mc:Ignorable="d"
+         Title="Добавить нового мастера" Height="430" Width="500"
+        WindowStartupLocation="CenterScreen"  ResizeMode="NoResize">
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Отзыв" FontSize="30"
+           HorizontalAlignment="Center" FontWeight="Bold"/>
+        <TextBlock Text="Комментарий:" Grid.Row="2"
+               Margin="0 7"/>
+        <TextBox Name="CommentsTb"
+             Grid.Row="3"/>
+        <TextBlock Grid.Row="4" Text="Почта:" 
+               Margin="0 7"/>
+       <DatePicker Name="DateDp" Grid.Row="5" Grid.Column="1" Margin="0 5"
+                   Width="200" HorizontalAlignment="Left"/>
+        <TextBlock Grid.Row="6" Text="Оценка:"
+               Margin="0 7"/>
+        <TextBox Name="MarkTb" 
+             Grid.Row="7"/>
+        <Button Name="AddBtn" Content="Добавить"
+            Grid.Row="10"  Click="AddBtn_Click"/>
+    </Grid>
+</Window>

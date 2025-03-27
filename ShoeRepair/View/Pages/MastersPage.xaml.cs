@@ -77,6 +77,7 @@ namespace ShoeRepair.View.Pages
                 _selectedUser = selectedMaster;
                 MasterDetailsGrid.DataContext = selectedMaster;
                 var feedbacks = App.Ent.Feedback
+                    .Where(f => f.Id == selectedMaster.Id)
                     .Select(f => new
                     {
                         f.Id,
